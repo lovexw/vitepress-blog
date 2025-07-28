@@ -1,19 +1,18 @@
 import { defineConfig } from 'upress'
 import type { Theme } from '@upress/theme-default/theme'
 
-const a = defineConfig<Theme.Config>({
+export default defineConfig<Theme.Config>({
   theme: '@upress/theme-default',
   srcDir: './site',
-  // outDir: resolve(process.cwd(), '../../build/defaultTheme'),
-  // title: 'defaultTheme demo',
-  base: '/vitepress-blog/defaultTheme/',
+  base: '/vitepress-blog/defaultTheme/', // 确认这是你的实际部署路径
+  
+  // 生产环境使用实际域名
   rss: {
-    host: 'localhost:5173'
+    host: 'https://yourdomain.com/vitepress-blog/defaultTheme/'
   },
-  // markdown: {
-  //   theme: 'github-dark'
-  // },
-  lang: '123',
+  
+  lang: 'zh-CN', // 使用有效的语言代码
+  
   themeConfig: {
     name: 'yue1123',
     filePathToTags: [
@@ -22,19 +21,19 @@ const a = defineConfig<Theme.Config>({
         tag: '随笔'
       }
     ],
-    sortBy: 'RANDOM',
+    sortBy: 'date', // 建议使用日期排序，更符合常规博客需求
     titleOrder: 'contentTitle',
+    
+    // 导航链接使用正确的相对路径
     nav: [
       { text: '首页', link: '/' },
-      { text: '标签', link: '/tags' },
-      { text: '归档', link: '/archives' }
+      { text: '标签', link: '/tags/' },
+      { text: '归档', link: '/archives/' }
     ],
+    
     socialLinks: [{ icon: 'github', link: 'https://github.com/yue1123' }],
     footer: {
       copyright: 'Copyright © 2023-present yue1123'
     }
   }
 })
-
-// console.log(a)
-export default a
